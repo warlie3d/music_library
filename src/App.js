@@ -5,6 +5,7 @@ import SearchBar from "./Components/SearchBar";
 import Gallery from "./Components/Gallery/Gallery";
 
 function App() {
+  //stateful variables
   const [search, setSearch] = useState('')
   const [message, setMessage] = useState('Search for Music')
   const [data, setData] = useState([])
