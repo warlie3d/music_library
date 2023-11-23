@@ -10,34 +10,42 @@ function App() {
   const [data, setData] = useState([])
   //https://itunes.apple.com/search?term=black%20sabbath
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = 'https://itunes.apple.com/search?term=linkin%20park'
-      const response = await fetch(url)
-      const data = await response.json()
-
-      if (data.results) {
-        setData(data.results)
-      } else {
-        //if you have no results, it resets 
-        setData([])
-        setMessage('Not Found')
+useEffect(() => {
+    if (search) {
+      const fetchData = async () => {
+        const url = encodeURI(`https://itunes.apple.com/search?term=${search}`)
+        const response = await fetch(url)
+        const data = await response.json()
+        //console.log(data)
+  
+        if (data.results.length > 0) {
+          setData(data.results)
+        } else {
+          setData([])
+          setMessage('Not Found')
+        }
       }
-      
-
-      console.log(data)
-
+  
+      fetchData()
+    } else {
+      if(data) setData([])
     }
+  //check only if it changes
+}, [search])
+  
+  //function for submit form
+  const handleSearch = (e, term) => {
+    e.preventDefault()
+    setSearch(term)
 
-    fetchData()
-    //checking stateful variable
-  }, [search])
+  }
 
   return (
     <div>
-      <SearchBar />
       {message}
-      <Gallery />
+      <SearchBar handleSearch={handleSearch} />
+      {/* pass data to gallery */}
+      <Gallery data={data} />
     </div>
   );
 }
