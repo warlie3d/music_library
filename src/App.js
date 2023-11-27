@@ -11,14 +11,19 @@ function App() {
   const [data, setData] = useState([])
   //https://itunes.apple.com/search?term=black%20sabbath
 
+
+  //fetching data
 useEffect(() => {
-    if (search) {
+  if (search) {
+      
+
       const fetchData = async () => {
         const url = encodeURI(`https://itunes.apple.com/search?term=${search}`)
         const response = await fetch(url)
         const data = await response.json()
         //console.log(data)
-  
+        
+        //check data for results
         if (data.results.length > 0) {
           setData(data.results)
         } else {
@@ -31,7 +36,7 @@ useEffect(() => {
     } else {
       if(data) setData([])
     }
-  //check only if it changes
+  //check only if it changes // refetching data
 }, [search])
   
   //function for submit form

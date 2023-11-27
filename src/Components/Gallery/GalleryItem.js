@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+// destructure item 
 function GalleryItem({ item }) {
     const [view, setView] = useState(false)
 
