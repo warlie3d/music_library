@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
+//import browseRouter
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // SearchBar
 import SearchBar from "./Components/SearchBar";
 // Gallery
 import Gallery from "./Components/Gallery/Gallery";
+import AlbumView from "./Components/Views/AlbumView";
+import ArtistView from "./Components/Views/ArtistView";
 
 function App() {
   //stateful variables
@@ -49,9 +53,19 @@ useEffect(() => {
   return (
     <div>
       {message}
-      <SearchBar handleSearch={handleSearch} />
-      {/* pass data to gallery */}
-      <Gallery data={data} />
+      <Router>
+        <Routes>
+          <Route path="/" element={
+            <>
+            <SearchBar handleSearch={handleSearch} />
+            <Gallery data={data} />
+            </>
+          } />
+            <Route path='/album/:id' element={<AlbumView />} />
+            <Route path='/artist/:id' element={<ArtistView />} />
+        </Routes>
+      </Router>
+      
     </div>
   );
 }
