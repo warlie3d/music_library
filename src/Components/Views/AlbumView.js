@@ -39,14 +39,15 @@ function AlbumView() {
         return (
             <div>
                 <button onClick={() => navigate(-1)}>Back</button>
-                <button onClick={() => navigate('/')}>Home</button>
 
+                <button onClick={() => navigate('/')}>Home</button>
             </div>
         )
     }
 
     return (
         <div>
+            {navButtons()}
             <p>Album Data Goes Here!</p>
             <p>ID: {id}</p>
             {songDisplay}
