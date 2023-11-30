@@ -51,7 +51,7 @@ useEffect(() => {
   }
 
   return (
-    <div>
+    <div className="App">
       {message}
       <Router>
         <Routes>

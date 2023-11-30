@@ -2,6 +2,7 @@
 // component to serve specific data about a given album
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import NavButtons from '../NavButton'
 
 function AlbumView() {
     const [ albumData, setAlbumData ] = useState([])
@@ -35,19 +36,20 @@ function AlbumView() {
         )
     })
 
-    const navButtons = () => {
-        return (
-            <div>
-                <button onClick={() => navigate(-1)}>Back</button>
+    // const navButtons = () => {
+    //     return (
+    //         <div>
+    //             <button onClick={() => navigate(-1)}>Back</button>
 
-                <button onClick={() => navigate('/')}>Home</button>
-            </div>
-        )
-    }
+    //             <button onClick={() => navigate('/')}>Home</button>
+    //         </div>
+    //     )
+    // }
 
     return (
         <div>
-            {navButtons()}
+            {/* //call nav buttons here */}
+            {NavButtons()}
             <p>Album Data Goes Here!</p>
             <p>ID: {id}</p>
             {songDisplay}
